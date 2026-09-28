@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/EProcurementRefactor.API/Program.cs
+/EProcurementRefactor.API/appsettings.json
+/EProcurementRefactor.API/Properties/launchSettings.json
