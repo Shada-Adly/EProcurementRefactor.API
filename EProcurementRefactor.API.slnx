@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="EProcurementRefactor.API/EProcurementRefactor.API.csproj" />
+  <Project Path="EProcurementRefactor.Application/EProcurementRefactor.Application.csproj" Id="0940d536-72ae-4f77-9e89-65135a544e9d" />
+  <Project Path="EProcurementRefactor.Domian/EProcurementRefactor.Domian.csproj" Id="875c3e41-4030-4390-a510-4d4c24c3728a" />
+  <Project Path="EProcurementRefactor.Infrastructure/EProcurementRefactor.Infrastructure.csproj" Id="99c7c797-0fbc-46ce-972a-ddc46cff6e54" />
+</Solution>

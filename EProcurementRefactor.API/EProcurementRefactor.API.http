@@ -1,0 +1,6 @@
+@EProcurementRefactor.API_HostAddress = http://localhost:5033
+
+GET {{EProcurementRefactor.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

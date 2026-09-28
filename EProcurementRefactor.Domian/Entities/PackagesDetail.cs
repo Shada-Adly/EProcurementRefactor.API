@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace EProcurementRefactor.Domain.Entities;
+
+public partial class PackagesDetail
+{
+    public int Id { get; set; }
+
+    public int? PkgId { get; set; }
+
+    public int? UserId { get; set; }
+
+    public string? PrNum { get; set; }
+
+    public string? LineItem { get; set; }
+
+    public DateOnly? PrDate { get; set; }
+
+    public string? MtrCode { get; set; }
+
+    public string? MtrDesc { get; set; }
+
+    public string? MtrLongDesc { get; set; }
+
+    public string? MtrBatch { get; set; }
+
+    public string? MtrQty { get; set; }
+
+    public string? MtrUom { get; set; }
+
+    public string? MGrp { get; set; }
+
+    public DateTime? InsertedDate { get; set; }
+
+    public string? Serial { get; set; }
+
+    public virtual PackagesHeader? Pkg { get; set; }
+}
