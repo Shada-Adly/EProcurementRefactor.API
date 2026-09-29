@@ -8,12 +8,12 @@ namespace EProcurementRefactor.Application.CQRS.Quieries.Handlers
     public class AdminLoginHandler : IQueryRequestHandler<AdminLoginQuery, LoginResponseDto>
     {
         private readonly IAdminRepository _adminRepository;
-        private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        private readonly IJWTGenerator _jwtTokenGenerator;
         private readonly IValidator<AdminLoginDto> _validator;
 
         public AdminLoginHandler(
             IAdminRepository adminRepository,
-            IJwtTokenGenerator jwtTokenGenerator,
+            IJWTGenerator jwtTokenGenerator,
             IValidator<AdminLoginDto> validator 
             )
         {

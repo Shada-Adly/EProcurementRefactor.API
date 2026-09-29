@@ -9,7 +9,7 @@ using System.Text;
 
 namespace EProcurementRefactor.Infrastructure.Services
 {
-    public class JwtTokenGenerator : IJwtTokenGenerator
+    public class JwtTokenGenerator : IJWTGenerator
     {
         private readonly TokenSettings _tokenSettings;
         public JwtTokenGenerator(IOptions<TokenSettings> options)

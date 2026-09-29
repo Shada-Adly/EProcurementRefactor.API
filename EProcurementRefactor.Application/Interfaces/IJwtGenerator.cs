@@ -2,7 +2,7 @@
 
 namespace EProcurementRefactor.Application.Interfaces
 {
-    public interface IJwtTokenGenerator
+    public interface IJWTGenerator
     {
         string GenerateToken(SiacAdmin siacAdmin);
     }
