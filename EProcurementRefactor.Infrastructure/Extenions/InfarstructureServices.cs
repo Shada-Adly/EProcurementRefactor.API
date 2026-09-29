@@ -27,7 +27,7 @@ namespace EProcurementRefactor.Infrastructure.Extenions
                 .UseSnakeCaseNamingConvention();
             });
 
-            services.AddSingleton<IjwtTokenGenerator, JwtTokenGenerator>();
+            services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
             services.AddSingleton<IPasswordService, PasswordService>();
 
             services.AddScoped<IAdminRepository, AdminRepository>();

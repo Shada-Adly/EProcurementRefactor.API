@@ -6,7 +6,6 @@ namespace EProcurementRefactor.Infrastructure.Services
     {
         public string HashPassword(string password)
         {
-
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
         public bool VerifyPassword(string password, string hashedPassword)

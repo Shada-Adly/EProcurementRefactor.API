@@ -1,4 +1,5 @@
 ﻿using EProcurementRefactor.Application.DTOs;
+using EProcurementRefactor.Application.Exceptions;
 using EProcurementRefactor.Application.Interfaces;
 using EProcurementRefactor.Domain.Entities;
 using EProcurementRefactor.Infrastructure.DBContexts;
@@ -9,18 +10,19 @@ namespace EProcurementRefactor.Infrastructure.Reposetories
 {
     public class AdminRepository : IAdminRepository
     {
-        private readonly EprocurementDbContext _dbContext;
+        private readonly IGenericRepository<SiacAdmin> _adminRepository;
         private readonly IPasswordService _passwordService;
         public AdminRepository(
-            EprocurementDbContext dbContext
+
+            IGenericRepository<SiacAdmin> adminRepository
             ,IPasswordService passwordService)
         {
-            _dbContext = dbContext;
+            _adminRepository = adminRepository;
             _passwordService = passwordService;
         }
         public async Task<SiacAdmin> Login(AdminLoginDto adminLoginDto, CancellationToken cancellationToken)
         {
-            var admin = await _dbContext.SiacAdmins.FirstOrDefaultAsync(a => a.Username == adminLoginDto.name);
+            var admin = await _adminRepository.FindByFirstOrDefault(a => a.Username == adminLoginDto.name,cancellationToken);
             
             if(admin is null)
             {
@@ -30,7 +32,7 @@ namespace EProcurementRefactor.Infrastructure.Reposetories
 
             if(!verifyPassword)
             {
-                throw new ValidationException("Invalid Password.");
+                throw new UnAuthenticatedException("Invalid Password.");
             }
             return admin;
         }
