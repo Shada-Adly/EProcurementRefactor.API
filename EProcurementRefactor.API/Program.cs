@@ -1,6 +1,6 @@
 using EProcurementRefactor.Application.Extenions;
 using EProcurementRefactor.Infrastructure.Extenions;
-using static EProcurementRefactor.API.Middlewares.GlobalExceptionMiddleware;
+using EProcurementRefactor.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +25,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseMiddleware<GlobalException>();
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.MapControllers();
 
