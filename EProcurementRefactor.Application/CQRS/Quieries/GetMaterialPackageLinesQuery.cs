@@ -1,0 +1,10 @@
+﻿using EProcurementRefactor.Application.Common.Mediator;
+using EProcurementRefactor.Application.DTOs;
+using EProcurementRefactor.Application.DTOs.SapDTOs;
+
+namespace EProcurementRefactor.Application.CQRS.Quieries
+{
+    public record GetMaterialPackageLinesQuery(SapPackageParametersDTO SapPackageParametersDTO)
+        : IQueryRequest<List<MaterialPackageLinesResponseDto>>;
+
+}

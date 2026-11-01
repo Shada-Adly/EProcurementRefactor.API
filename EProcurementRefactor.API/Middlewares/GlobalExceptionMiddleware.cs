@@ -5,10 +5,9 @@ namespace EProcurementRefactor.API.Middlewares
 {
     public class GlobalExceptionMiddleware
     {
-        public class GlobalException
-        {
+
             private readonly RequestDelegate _next;
-            public GlobalException(RequestDelegate next)
+            public GlobalExceptionMiddleware(RequestDelegate next)
             {
                 _next = next;
             }
@@ -38,6 +37,5 @@ namespace EProcurementRefactor.API.Middlewares
                     Detail = exception.Message
                 });
             }
-        }
     }
 }
