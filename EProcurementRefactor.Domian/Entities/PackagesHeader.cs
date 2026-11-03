@@ -1,38 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EProcurementRefactor.Domian.Enums;
 
 namespace EProcurementRefactor.Domain.Entities;
 
 public partial class PackagesHeader
 {
-    public int Id { get; set; }
+    public int id { get; set; }
 
-    public string? PkgName { get; set; }
+    public string? pkg_name { get; set; }
 
-    public string? AssignType { get; set; }
+    public char assign_type { get; set; }
 
-    public int? ProjectId { get; set; }
+    public int project_id { get; set; }
 
-    public int? IndustryId { get; set; }
+    public int industry_id { get; set; }
 
-    public DateTime? InsertedDate { get; set; }
+    public DateTime? inserted_date { get; set; }
 
-    public bool? Bid { get; set; }
+    public bool? bid { get; set; }
 
-    public bool? Cancelled { get; set; }
+    public bool? cancelled { get; set; }
 
-    public int? PkgNum { get; set; }
+    public int pkg_num { get; set; }
 
-    public int? AssignedBy { get; set; }
+    public int? assigned_by { get; set; }
 
-    public string? FilePath { get; set; }
+    public string? file_path { get; set; }
 
-    public bool? ExclImport { get; set; }
+    public bool? excl_import { get; set; }
 
-    public bool? IsService { get; set; }
+    public bool? is_service { get; set; }
 
-    public string? Currency { get; set; }
-
+    public string? currency { get; set; }
+    public char? type { get; set; }
+    public int? credit_period { get; set; }
+    public PeriodType? credit_periodType { get; set; }
+    public int? delivery_duration { get; set; }
+    public PeriodType? delivery_durationType { get; set; }
+    public DateTime? expiration_date { get; set; }
+    public int? execution_duration { get; set; }
+    public PeriodType? execution_durationType { get; set; }
+   // public int PackageNum { get; set; }
     public virtual ICollection<AcceptedOffer> AcceptedOffers { get; set; } = new List<AcceptedOffer>();
 
     public virtual ICollection<PackagesDetail> PackagesDetails { get; set; } = new List<PackagesDetail>();

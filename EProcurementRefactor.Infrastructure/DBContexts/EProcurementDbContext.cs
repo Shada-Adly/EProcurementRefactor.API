@@ -111,9 +111,9 @@ public partial class EprocurementDbContext : DbContext
 
     public virtual DbSet<VendorBidding> VendorBiddings { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;database=eprocuremntrefactor;user=root;password=Ash47", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.5.27-mariadb"));
+//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+//        => optionsBuilder.UseMySql("server=localhost;database=e-procurement;user=root;password=Ash47", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.5.27-mariadb"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -611,119 +611,156 @@ public partial class EprocurementDbContext : DbContext
 
         modelBuilder.Entity<PackagesDetail>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
+            entity.HasKey(e => e.id).HasName("PRIMARY");
 
             entity
                 .ToTable("packages_details")
                 .HasCharSet("utf8")
                 .UseCollation("utf8_general_ci");
 
-            entity.HasIndex(e => e.PkgId, "FK_PKG_Header");
+            entity.HasIndex(e => e.pkg_id, "FK_PKG_Header");
 
-            entity.Property(e => e.Id)
+            entity.Property(e => e.id)
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
-            entity.Property(e => e.InsertedDate)
+            entity.Property(e => e.inserted_date)
                 .HasDefaultValueSql("current_timestamp()")
                 .HasColumnType("timestamp")
                 .HasColumnName("inserted_date");
-            entity.Property(e => e.LineItem)
+            entity.Property(e => e.line_item)
                 .HasMaxLength(255)
                 .HasColumnName("line_item");
-            entity.Property(e => e.MGrp)
+            entity.Property(e => e.m_grp)
                 .HasMaxLength(255)
                 .HasColumnName("m_grp");
-            entity.Property(e => e.MtrBatch)
+            entity.Property(e => e.mtr_batch)
                 .HasMaxLength(255)
                 .HasColumnName("mtr_batch");
-            entity.Property(e => e.MtrCode)
+            entity.Property(e => e.mtr_code)
                 .HasMaxLength(255)
                 .HasColumnName("mtr_code");
-            entity.Property(e => e.MtrDesc)
+            entity.Property(e => e.mtr_desc)
                 .HasMaxLength(255)
                 .HasColumnName("mtr_desc");
-            entity.Property(e => e.MtrLongDesc)
+            entity.Property(e => e.mtr_long_desc)
                 .HasMaxLength(255)
                 .HasColumnName("mtr_long_desc");
-            entity.Property(e => e.MtrQty)
+            entity.Property(e => e.mtr_qty)
                 .HasMaxLength(255)
                 .HasColumnName("mtr_qty");
-            entity.Property(e => e.MtrUom)
+            entity.Property(e => e.mtr_uom)
                 .HasMaxLength(255)
                 .HasColumnName("mtr_uom");
-            entity.Property(e => e.PkgId)
+            entity.Property(e => e.pkg_id)
                 .HasColumnType("int(11)")
                 .HasColumnName("pkg_id");
-            entity.Property(e => e.PrDate).HasColumnName("pr_date");
-            entity.Property(e => e.PrNum)
+            entity.Property(e => e.pr_date).HasColumnName("pr_date");
+            entity.Property(e => e.pr_num)
                 .HasMaxLength(255)
                 .HasColumnName("pr_num");
-            entity.Property(e => e.Serial)
+            entity.Property(e => e.serial)
                 .HasMaxLength(255)
                 .HasColumnName("serial");
-            entity.Property(e => e.UserId)
+            entity.Property(e => e.user_id)
                 .HasColumnType("int(11)")
                 .HasColumnName("user_id");
 
-            entity.HasOne(d => d.Pkg).WithMany(p => p.PackagesDetails)
-                .HasForeignKey(d => d.PkgId)
+            entity.HasOne(d => d.pkg).WithMany(p => p.PackagesDetails)
+                .HasForeignKey(d => d.pkg_id)
                 .HasConstraintName("FK_PKG_Header");
         });
 
         modelBuilder.Entity<PackagesHeader>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
+            entity.HasKey(e => e.id).HasName("PRIMARY");
 
             entity
                 .ToTable("packages_header")
                 .HasCharSet("utf8")
                 .UseCollation("utf8_general_ci");
 
-            entity.Property(e => e.Id)
+            entity.Property(e => e.id)
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
-            entity.Property(e => e.AssignType)
+
+            entity.Property(e => e.assign_type)
                 .HasMaxLength(1)
                 .IsFixedLength()
                 .HasColumnName("assign_type");
-            entity.Property(e => e.AssignedBy)
+
+            entity.Property(e => e.assigned_by)
                 .HasColumnType("int(11)")
                 .HasColumnName("assigned_by");
-            entity.Property(e => e.Bid)
+
+            entity.Property(e => e.bid)
                 .HasDefaultValueSql("'0'")
                 .HasColumnName("bid");
-            entity.Property(e => e.Cancelled)
+
+            entity.Property(e => e.cancelled)
                 .HasDefaultValueSql("'0'")
                 .HasColumnName("cancelled");
-            entity.Property(e => e.Currency)
+
+            entity.Property(e => e.currency)
                 .HasMaxLength(3)
                 .IsFixedLength()
                 .HasColumnName("currency");
-            entity.Property(e => e.ExclImport)
+
+            entity.Property(e => e.excl_import)
                 .HasDefaultValueSql("'0'")
                 .HasColumnName("excl_import");
-            entity.Property(e => e.FilePath)
+
+            entity.Property(e => e.file_path)
                 .HasMaxLength(255)
                 .HasColumnName("file_path");
-            entity.Property(e => e.IndustryId)
+
+            entity.Property(e => e.industry_id)
                 .HasColumnType("int(11)")
                 .HasColumnName("industry_id");
-            entity.Property(e => e.InsertedDate)
+
+            entity.Property(e => e.inserted_date)
                 .HasDefaultValueSql("current_timestamp()")
                 .HasColumnType("timestamp")
                 .HasColumnName("inserted_date");
-            entity.Property(e => e.IsService)
+
+            entity.Property(e => e.is_service)
                 .HasDefaultValueSql("'0'")
                 .HasColumnName("is_service");
-            entity.Property(e => e.PkgName)
+
+            entity.Property(e => e.pkg_name)
                 .HasMaxLength(255)
                 .HasColumnName("pkg_name");
-            entity.Property(e => e.PkgNum)
+
+            entity.Property(e => e.pkg_num)
                 .HasColumnType("int(11)")
                 .HasColumnName("pkg_num");
-            entity.Property(e => e.ProjectId)
+
+            entity.Property(e => e.project_id)
                 .HasColumnType("int(11)")
                 .HasColumnName("project_id");
+
+            entity.Property(e => e.credit_period)
+             .HasColumnType("int(11)")
+             .HasColumnName("credit_period");
+
+            entity.Property(e => e.credit_periodType)
+             .HasColumnType("int(11)")
+             .HasColumnName("credit_periodType");
+
+            entity.Property(e => e.delivery_duration)
+             .HasColumnType("int(11)")
+             .HasColumnName("delivery_duration");
+
+            entity.Property(e => e.delivery_durationType)
+             .HasColumnType("int(11)")
+             .HasColumnName("delivery_durationType");
+
+            entity.Property(e => e.execution_duration)
+             .HasColumnType("int(11)")
+             .HasColumnName("execution_duration");
+
+            entity.Property(e => e.execution_durationType)
+             .HasColumnType("int(11)")
+             .HasColumnName("execution_durationType");
         });
 
         modelBuilder.Entity<PrServDetail>(entity =>

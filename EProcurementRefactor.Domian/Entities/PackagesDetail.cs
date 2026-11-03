@@ -1,39 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace EProcurementRefactor.Domain.Entities;
+﻿namespace EProcurementRefactor.Domain.Entities;
 
 public partial class PackagesDetail
 {
-    public int Id { get; set; }
+    public int id { get; set; }
 
-    public int? PkgId { get; set; }
+    public int? pkg_id { get; set; }
 
-    public int? UserId { get; set; }
+    public int? user_id { get; set; }
 
-    public string? PrNum { get; set; }
+    public string? pr_num { get; set; }
 
-    public string? LineItem { get; set; }
+    public string? line_item { get; set; }
 
-    public DateOnly? PrDate { get; set; }
+    public DateOnly? pr_date { get; set; }
 
-    public string? MtrCode { get; set; }
+    public string? mtr_code { get; set; }
 
-    public string? MtrDesc { get; set; }
+    public string? mtr_desc { get; set; }
 
-    public string? MtrLongDesc { get; set; }
+    public string? mtr_long_desc { get; set; }
 
-    public string? MtrBatch { get; set; }
+    public string? mtr_batch { get; set; }
 
-    public string? MtrQty { get; set; }
+    public string? mtr_qty { get; set; }
 
-    public string? MtrUom { get; set; }
+    public string? mtr_uom { get; set; }
 
-    public string? MGrp { get; set; }
+    public string? m_grp { get; set; }
 
-    public DateTime? InsertedDate { get; set; }
+    public DateTime? inserted_date { get; set; }
 
-    public string? Serial { get; set; }
-
-    public virtual PackagesHeader? Pkg { get; set; }
+    public string? serial { get; set; }
+    public int risk_realism { get; set; }
+    public virtual PackagesHeader? pkg { get; set; }
 }
