@@ -68,6 +68,7 @@ namespace EProcurementRefactor.Infrastructure.Services
                         mtr_desc = item.mat_desc,
                         line_item = item.pr_item,
                         mtr_qty = item.m_req_qty,
+                        risk_realism = 5,
                         mtr_long_desc = item.m_long_desc,
                         user_id = 0,
                         pkg = materialPackageHeader
@@ -136,6 +137,7 @@ namespace EProcurementRefactor.Infrastructure.Services
                     mtr_uom = e.S_UNIT,
                     mtr_code = e.SER_CODE,
                     m_grp = e.S_GRP,
+                    risk_realism = 11,
                     mtr_desc = e.SER_DESC,
                     line_item = e.PR_ITEM,
                     mtr_qty= e.S_REQ_QTY,
