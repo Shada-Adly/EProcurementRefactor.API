@@ -10,5 +10,11 @@ namespace EProcurementRefactor.Application.Interfaces
         Task<int> CreateServicePackage(
             CreateServicePackageDto createServicePackageDto,
             CancellationToken cancellationToken);
+        Task<int> CreateMaterialPackageManual(
+            CreateMaterialPackageManualDTO createMaterialPackageManualDTO,
+            CancellationToken cancellationToken);
+        Task<int> CreateServicePackageManual(
+            CreateServicePackageManualDTO createServicePackageManualDTO,
+            CancellationToken cancellationToken);
     }
 }

@@ -8,13 +8,10 @@ namespace EProcurementRefactor.Infrastructure.Reposetories
     public class GenericPackageRepo<T> : IGenericPackagesRepo<T> where T : class
     {
         private readonly DbSet<T> _set;
-        private readonly IUnitOfWork _unitOfWork;
         public GenericPackageRepo(
-            EprocurementDbContext eprocurementDbContext,
-            IUnitOfWork unitOfWork)
+            EprocurementDbContext eprocurementDbContext)
         {
             _set = eprocurementDbContext.Set<T>();
-            _unitOfWork = unitOfWork;
         }
         public async Task AddAsync(T entity)
         {

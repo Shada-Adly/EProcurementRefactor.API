@@ -21,32 +21,30 @@ namespace EProcurementRefactor.API.Controllers
         }
         [HttpPost("CreateMaterialPackage")]
         public async Task<IActionResult> CreateMaterialPackage(
-            [FromForm] CreateMaterialPackageDto createMaterialPackageDto,
-            IFormFile? file,
+            [FromBody] CreateMaterialPackageDto createMaterialPackageDto,
             CancellationToken cancellationToken)
         {
 
-
             createMaterialPackageDto.assigned_by = 1;
 
-            if (file != null)
-            {
-                string packagesFolder = Path.Combine(
-                    _environment.WebRootPath, "packages");
+            //if (createMaterialPackageDto.file != null)
+            //{
+            //    string packagesFolder = Path.Combine(
+            //        _environment.WebRootPath, "packages");
 
-                Directory.CreateDirectory(packagesFolder);
+            //    Directory.CreateDirectory(packagesFolder);
 
-                string fileName = Path.GetFileName(file.FileName);
-                string filePath = Path.Combine(packagesFolder, fileName);
+            //    string fileName = Path.GetFileName(createMaterialPackageDto.file.FileName);
+            //    string filePath = Path.Combine(packagesFolder, fileName);
 
-                using var stream = new FileStream(filePath, FileMode.Create);
-                await file.CopyToAsync(stream, cancellationToken);
+            //    using var stream = new FileStream(filePath, FileMode.Create);
+            //    await createMaterialPackageDto.file.CopyToAsync(stream, cancellationToken);
 
-                createMaterialPackageDto.filePath =
-                    filePath.Substring(
-                        filePath.IndexOf("wwwroot", StringComparison.Ordinal))
-                    .Replace('\\', '/');
-            }
+            //    createMaterialPackageDto.filePath =
+            //        filePath.Substring(
+            //            filePath.IndexOf("wwwroot", StringComparison.Ordinal))
+            //        .Replace('\\', '/');
+            //}
             var result = await _mediator.
                 SendCommandAsync<CreateMaterialPackageCommand, int>
                 (new CreateMaterialPackageCommand(createMaterialPackageDto),
@@ -54,6 +52,7 @@ namespace EProcurementRefactor.API.Controllers
 
             return Ok(result);
         }
+
         [HttpPost("CreateServicePackage")]
         public async Task<IActionResult> CreateServicePackage(
             [FromForm] CreateServicePackageDto createServicePackageDto,
@@ -76,16 +75,88 @@ namespace EProcurementRefactor.API.Controllers
                 using var stream = new FileStream(filePath, FileMode.Create);
                 await file.CopyToAsync(stream, cancellationToken);
 
-                createServicePackageDto.filePath =
-                    filePath.Substring(
-                        filePath.IndexOf("wwwroot", StringComparison.Ordinal))
-                    .Replace('\\', '/');
+                //createServicePackageDto.filePath =
+                //    filePath.Substring(
+                //        filePath.IndexOf("wwwroot", StringComparison.Ordinal))
+                //    .Replace('\\', '/');
             }
             var result = await _mediator.
                 SendCommandAsync<CreateServicePackageCommand, int>
                 (new CreateServicePackageCommand(createServicePackageDto),
                 cancellationToken);
 
+            return Ok(result);
+        }
+
+        [HttpPost("CreateMaterialPackageManual")]
+        public async Task<IActionResult> CreateMaterialPackageManual(
+            [FromBody] CreateMaterialPackageManualDTO createMaterialPackageManualDTO,
+            CancellationToken cancellationToken)
+        {
+            createMaterialPackageManualDTO.assigned_by = 1;
+
+            //if (createMaterialPackageManualDTO.file != null)
+            //{
+            //    string folderPath = Path.Combine(
+            //        _environment.WebRootPath,
+            //        "packages");
+
+            //    if (!Directory.Exists(folderPath))
+            //        Directory.CreateDirectory(folderPath);
+
+            //    string fileName = Guid.NewGuid() + Path.GetExtension(createMaterialPackageManualDTO.file.FileName);
+
+            //    string fullPath = Path.Combine(folderPath, fileName);
+
+            //    using (var stream = new FileStream(fullPath, FileMode.Create))
+            //    {
+            //        await createMaterialPackageManualDTO.file.CopyToAsync(stream, cancellationToken);
+            //    }
+
+            //    createMaterialPackageManualDTO.filePath = Path.Combine("wwwroot", "packages", fileName)
+            //        .Replace("\\", "/");
+            //}
+
+            var result = await _mediator.
+                SendCommandAsync <CreateMaterialPackageManualCommand, int>
+                (new CreateMaterialPackageManualCommand(createMaterialPackageManualDTO),
+                cancellationToken);
+            return Ok(result);
+        }
+
+        [HttpPost("CreateServicePackageManual")]
+        public async Task<IActionResult> CreateServicePackageManual(
+            [FromBody] CreateServicePackageManualDTO createServicePackageManualDTO,
+            CancellationToken cancellationToken)
+        {
+            createServicePackageManualDTO.assigned_by = 1;
+
+            //if (createServicePackageManualDTO.file != null)
+            //{
+            //    string folderPath = Path.Combine(
+            //        _environment.WebRootPath,
+            //        "packages");
+
+            //    if (!Directory.Exists(folderPath))
+            //        Directory.CreateDirectory(folderPath);
+
+            //    string fileName = Guid.NewGuid() + Path.GetExtension(createServicePackageManualDTO.file.FileName);
+
+            //    string fullPath = Path.Combine(folderPath, fileName);
+
+            //    using (var stream = new FileStream(fullPath, FileMode.Create))
+            //    {
+            //        await createServicePackageManualDTO.file.CopyToAsync(stream, cancellationToken);
+            //    }
+
+            //    createServicePackageManualDTO.filePath = Path.Combine("wwwroot", "packages", fileName)
+            //        .Replace("\\", "/");
+            //}
+
+            var result = await _mediator.
+                SendCommandAsync<CreateServicePackageManualCommand, int>
+                (new CreateServicePackageManualCommand(createServicePackageManualDTO),
+                cancellationToken);
             return Ok(result);
         }
     }

@@ -31,6 +31,6 @@ public partial class PackagesDetail
     public DateTime? inserted_date { get; set; }
 
     public string? serial { get; set; }
-
+    public int risk_realism { get; set; }
     public virtual PackagesHeader? pkg { get; set; }
 }

@@ -1,4 +1,6 @@
-﻿namespace EProcurementRefactor.Application.DTOs
+﻿using Microsoft.AspNetCore.Http;
+
+namespace EProcurementRefactor.Application.DTOs
 {
     public abstract class PackageAbstractClassDto
     {
@@ -12,10 +14,14 @@
 
         public int assigned_by { get; set; }
 
-        public string filePath { get; set; }
+        //public IFormFile file { get; set; } = null!;
+        //public string? filePath { get; set; }
         public string currency { get; set; }
 
         public char type { get; set; }
         public DateTime expiration_date { get; set; }
     }
 }
+
+
+

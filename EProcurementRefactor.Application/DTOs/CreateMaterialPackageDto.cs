@@ -1,4 +1,6 @@
-﻿namespace EProcurementRefactor.Application.DTOs
+﻿using Microsoft.AspNetCore.Http;
+
+namespace EProcurementRefactor.Application.DTOs
 {
     public class CreateMaterialPackageDto : PackageAbstractClassDto
     {
@@ -9,3 +11,4 @@
         public List<SelectedRowsDTO> selected_rows { get; set; } = new();
     }
 }
+

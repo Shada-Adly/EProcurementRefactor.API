@@ -32,7 +32,6 @@ public partial class PackagesHeader
 
     public string? currency { get; set; }
     public char? type { get; set; }
-
     public int? credit_period { get; set; }
     public PeriodType? credit_periodType { get; set; }
     public int? delivery_duration { get; set; }
