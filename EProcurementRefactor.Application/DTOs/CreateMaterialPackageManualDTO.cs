@@ -8,8 +8,6 @@ namespace EProcurementRefactor.Application.DTOs
         public string? credit_periodType { get; set; }
         public int? delivery_duration { get; set; }
         public string? delivery_durationType { get; set; }
-        public int? execution_duration { get; set; }
-        public string? execution_durationType { get; set; }
         public List<SelectedRowsDTO> selected_rows { get; set; } = new();
         public List<int> user_ids { get; set; } = new();
 

@@ -167,7 +167,7 @@ namespace EProcurementRefactor.Infrastructure.Services
                 await _unitOfWork.BeginTransaction(cancellationToken);
                 int returnedvalue = 0;
 
-                var result = await MappingCommonPackageProperities(createMaterialPackageManualDTO,false);
+                var result = await MappingCommonPackageProperities(createMaterialPackageManualDTO, false);
 
                 var materialPackageHeader = result.CommonPackageHeader;
 
@@ -197,7 +197,10 @@ namespace EProcurementRefactor.Infrastructure.Services
                      .Distinct()
                      .ToList();
 
-                var packageDetailsList = selected_rows
+                if (createMaterialPackageManualDTO.user_ids.Count > 0
+                    && createMaterialPackageManualDTO.risk_realisms.Count > 0)
+                {
+                    var packageDetailsList = selected_rows
                     .SelectMany(PR => createMaterialPackageManualDTO.user_ids
                         .Zip(createMaterialPackageManualDTO.risk_realisms,
                         (userId, risk) => new PackagesDetail
@@ -218,8 +221,8 @@ namespace EProcurementRefactor.Infrastructure.Services
                             pkg = materialPackageHeader
                         })).ToList();
 
-                await _packageDetailsRepo.AddRangeAsync(packageDetailsList);
-
+                    await _packageDetailsRepo.AddRangeAsync(packageDetailsList);
+                }
                 returnedvalue = await _unitOfWork.SaveChangesAsync(cancellationToken);
 
                 await _unitOfWork.CommitTransaction(cancellationToken);
@@ -263,7 +266,10 @@ namespace EProcurementRefactor.Infrastructure.Services
                      .Distinct()
                      .ToList();
 
-                var packageDetailsList = selected_rows
+                if (createServicePackageManualDTO.user_ids.Count > 0
+                    && createServicePackageManualDTO.risk_realisms.Count > 0)
+                {
+                    var packageDetailsList = selected_rows
                     .SelectMany(PR => createServicePackageManualDTO.user_ids
                         .Zip(createServicePackageManualDTO.risk_realisms,
                         (userId, risk) => new PackagesDetail
@@ -286,7 +292,8 @@ namespace EProcurementRefactor.Infrastructure.Services
                             pkg = servicePackageHeader
                         })).ToList();
 
-                await _packageDetailsRepo.AddRangeAsync(packageDetailsList);
+                    await _packageDetailsRepo.AddRangeAsync(packageDetailsList);
+                }
 
                 returnedvalue = await _unitOfWork.SaveChangesAsync(cancellationToken);
 
